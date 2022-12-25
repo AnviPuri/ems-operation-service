@@ -14,11 +14,7 @@ public interface ProjectService {
 	
 				// get all projects in department
 	
-				// get all emplyess in a project
-	
-				// get all emplyess in a project hierarchy
-	
-				// add user to a project ( check if the dept user belongs to has project and add the project in dept too)
+				// add user to a project (check if the dept user belongs to has project and add the project in dept too)
 	
 
 }

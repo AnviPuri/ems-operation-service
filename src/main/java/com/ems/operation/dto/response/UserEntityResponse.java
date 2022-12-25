@@ -1,6 +1,6 @@
 package com.ems.operation.dto.response;
 
-public class UserAddInEntityResponse {
+public class UserEntityResponse {
 
 	private String userEntityId;
 
@@ -17,6 +17,10 @@ public class UserAddInEntityResponse {
 	private String entityLevelDesignation;
 
 	private String status;
+
+	private String userFirstName;
+
+	private String userLastName;
 
 	public String getUserEntityId() {
 		return userEntityId;
@@ -80,6 +84,22 @@ public class UserAddInEntityResponse {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getUserFirstName() {
+		return userFirstName;
+	}
+
+	public void setUserFirstName(String userFirstName) {
+		this.userFirstName = userFirstName;
+	}
+
+	public String getUserLastName() {
+		return userLastName;
+	}
+
+	public void setUserLastName(String userLastName) {
+		this.userLastName = userLastName;
 	}
 
 }

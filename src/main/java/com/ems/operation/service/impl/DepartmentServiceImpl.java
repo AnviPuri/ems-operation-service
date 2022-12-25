@@ -16,17 +16,12 @@ import org.springframework.stereotype.Service;
 
 import com.ems.operation.communication.SyncCommunication;
 import com.ems.operation.communication.response.UserResponse;
-import com.ems.operation.constant.Constants;
 import com.ems.operation.dto.request.DepartmentRequest;
 import com.ems.operation.dto.request.DepartmentUpdateRequest;
-import com.ems.operation.dto.request.UserAddInEntityRequest;
 import com.ems.operation.dto.response.DepartmentResponse;
-import com.ems.operation.dto.response.UserAddInEntityResponse;
 import com.ems.operation.entity.Department;
 import com.ems.operation.mapper.DepartmentMapper;
-import com.ems.operation.mapper.UserEntityMappingMapper;
 import com.ems.operation.repo.DepartmentRepo;
-import com.ems.operation.repo.UserEntityRepo;
 import com.ems.operation.service.DepartmentService;
 import com.ems.operation.util.AuditUtility;
 
@@ -45,9 +40,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 	private DepartmentRepo deptRepository;
 
 	@Autowired
-	private UserEntityRepo userEntityRepository;
-
-	@Autowired
 	private SyncCommunication syncCommunication;
 
 	private Logger logger = EmsLogger.getLogger(DepartmentServiceImpl.class.getName());
@@ -56,6 +48,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public DepartmentResponse createDepartment(DepartmentRequest departmentRequest) {
 
 		EmsLogger.log("CREATE DEPARTMENT WITH REQUEST : " + EmsUtility.toJsonString(departmentRequest), logger);
+		
+		// Department Head/ Project Head added as root user
+		// when assigning reporting head only option of users who exist in project/dept given
 
 		// validation - check if user exists
 
@@ -171,33 +166,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 			// TO DO - add project details
 		}
 		return departmentResponse;
-	}
-
-	@Override
-	public UserAddInEntityResponse addUserToDept(UserAddInEntityRequest userAddInDepartmentRequest,
-			String departmentId) {
-
-		// TO DO - Validation check if user and department exists
-
-		// create request object
-		UserEntityMappingMapper.entityUserRequestToEntityMapper(userAddInDepartmentRequest, departmentId,
-				Constants.EntityType.DEPARTMENT, Constants.Status.ACTIVE);
-		// save to repo
-		// convert to response
-		return null;
-
-	}
-
-	@Override
-	public void removeUserFromDept() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateUserInDept() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

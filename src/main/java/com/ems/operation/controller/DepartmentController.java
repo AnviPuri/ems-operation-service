@@ -17,13 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ems.operation.dto.request.DepartmentRequest;
 import com.ems.operation.dto.request.DepartmentUpdateRequest;
-import com.ems.operation.dto.request.UserAddInEntityRequest;
 import com.ems.operation.dto.response.DepartmentResponse;
-import com.ems.operation.dto.response.UserAddInEntityResponse;
 import com.ems.operation.service.DepartmentService;
 
 @RestController
-@RequestMapping("/api/department")
+@RequestMapping("/api/operation/department")
 public class DepartmentController {
 
 	@Autowired
@@ -61,14 +59,6 @@ public class DepartmentController {
 	public DepartmentResponse getByUserId(@PathVariable String departmentId) {
 
 		return departmentServiceImpl.getDepartmentById(departmentId);
-	}
-
-	@PostMapping(value = "/{departmentId}", produces = "application/json")
-	public UserAddInEntityResponse addUserToDepartment(
-			@Valid @RequestBody UserAddInEntityRequest userAddInDepartmentRequest,
-			@PathVariable String departmentId) {
-
-		return departmentServiceImpl.addUserToDept(userAddInDepartmentRequest, departmentId);
 	}
 
 }

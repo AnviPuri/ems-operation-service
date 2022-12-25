@@ -1,5 +1,7 @@
 package com.ems.operation.communication;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -16,6 +18,16 @@ public class SyncCommunication {
 		userResponse = webClient.get().uri(Constants.ApiPath.GET_BY_USER_ID + userId).retrieve()
 				.bodyToMono(UserResponse.class).block();
 		return userResponse;
+	}
+
+	public List<UserResponse> getUserDetailsList(List<String> userIdList) {
+
+//		WebClient webClient = WebClient.create(Constants.BaseUri.USER_SERVICE_URI);
+//		UserResponse userResponse = new UserResponse();
+//		userResponse = webClient.get().uri(Constants.ApiPath.GET_BY_USER_ID + userId).retrieve()
+//				.bodyToMono(UserResponse.class).block();
+//		return userResponse;
+		return null;
 	}
 
 }

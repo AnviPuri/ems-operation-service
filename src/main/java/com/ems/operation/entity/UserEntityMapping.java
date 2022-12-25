@@ -34,6 +34,12 @@ public class UserEntityMapping {
 	@Column(name = "entity_level_designation")
 	private String entityLevelDesignation;
 
+	@Column(name = "user_first_name")
+	private String userFirstName;
+
+	@Column(name = "user_last_name")
+	private String userLastName;
+
 	private String status;
 
 	@Embedded
@@ -93,6 +99,22 @@ public class UserEntityMapping {
 
 	public void setEntityLevelDesignation(String entityLevelDesignation) {
 		this.entityLevelDesignation = entityLevelDesignation;
+	}
+
+	public String getUserFirstName() {
+		return userFirstName;
+	}
+
+	public void setUserFirstName(String userFirstName) {
+		this.userFirstName = userFirstName;
+	}
+
+	public String getUserLastName() {
+		return userLastName;
+	}
+
+	public void setUserLastName(String userLastName) {
+		this.userLastName = userLastName;
 	}
 
 	public String getStatus() {
