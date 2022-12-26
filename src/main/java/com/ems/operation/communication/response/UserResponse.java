@@ -25,6 +25,8 @@ public class UserResponse {
 	private String relationship;
 	private String status;
 	private boolean isConsentAccepted;
+//	private List<AddressResponse> addressResponseList = new ArrayList<>();
+//	private List<EducationResponse> educationResponseList = new ArrayList<>();
 
 	public String getUserId() {
 		return userId;
@@ -185,5 +187,21 @@ public class UserResponse {
 	public void setConsentAccepted(boolean isConsentAccepted) {
 		this.isConsentAccepted = isConsentAccepted;
 	}
+
+//	public List<AddressResponse> getAddressResponseList() {
+//		return addressResponseList;
+//	}
+//
+//	public void setAddressResponseList(List<AddressResponse> addressResponseList) {
+//		this.addressResponseList = addressResponseList;
+//	}
+//
+//	public List<EducationResponse> getEducationResponseList() {
+//		return educationResponseList;
+//	}
+//
+//	public void setEducationResponseList(List<EducationResponse> educationResponseList) {
+//		this.educationResponseList = educationResponseList;
+//	}
 
 }

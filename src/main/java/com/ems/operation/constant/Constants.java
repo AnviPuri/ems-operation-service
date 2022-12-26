@@ -19,6 +19,7 @@ public final class Constants {
 	public static class ApiPath {
 
 		public static final String GET_BY_USER_ID = "/api/user/";
+		public static final String GET_ALL_USERS = "/api/user/all";
 
 	}
 

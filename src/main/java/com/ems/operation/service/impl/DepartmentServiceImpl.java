@@ -53,6 +53,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 		// when assigning reporting head only option of users who exist in project/dept given
 
 		// validation - check if user exists
+		
+		// ADD user id as department head
 
 		Department department = new Department();
 		department = DepartmentMapper.departmentRequestToEntityMapper(departmentRequest);

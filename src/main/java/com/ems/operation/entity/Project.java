@@ -25,8 +25,8 @@ public class Project {
 	@Column(name = "project_name")
 	private String projectName;
 
-	@Column(name = "poc_employee")
-	private String pocEmployee;
+	@Column(name = "project_head")
+	private String projectHead;
 
 	private String status;
 
@@ -52,12 +52,12 @@ public class Project {
 		this.projectName = projectName;
 	}
 
-	public String getPocEmployee() {
-		return pocEmployee;
+	public String getProjectHead() {
+		return projectHead;
 	}
 
-	public void setPocEmployee(String pocEmployee) {
-		this.pocEmployee = pocEmployee;
+	public void setProjectHead(String projectHead) {
+		this.projectHead = projectHead;
 	}
 
 	public String getStatus() {
