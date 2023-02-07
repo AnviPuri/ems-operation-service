@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ems.operation.dto.request.DepartmentRequest;
-import com.ems.operation.dto.request.DepartmentUpdateRequest;
 import com.ems.operation.dto.response.DepartmentResponse;
 import com.ems.operation.service.DepartmentService;
 
@@ -34,20 +33,20 @@ public class DepartmentController {
 	}
 
 	@PutMapping(value = "/{departmentId}", produces = "application/json")
-	public DepartmentResponse updateUser(@Valid @RequestBody DepartmentUpdateRequest departmentUpdateRequest,
+	public DepartmentResponse updateDepartment(@Valid @RequestBody DepartmentRequest departmentUpdateRequest,
 			@PathVariable String departmentId) {
 
-		return departmentServiceImpl.updateDepartment(departmentUpdateRequest);
+		return departmentServiceImpl.updateDepartment(departmentUpdateRequest, departmentId);
 	}
 
 	@DeleteMapping(value = "/{departmentId}", produces = "application/json")
-	public boolean deleteUser(@PathVariable String departmentId) {
+	public boolean deleteDepartment(@PathVariable String departmentId) {
 
 		return departmentServiceImpl.deleteDepartment(departmentId);
 	}
 
 	@GetMapping(value = "/all", produces = "application/json")
-	public HashMap<String, Object> getAllUsersByUserType(
+	public HashMap<String, Object> getAllDepartments(
 			@RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
 			@RequestParam(value = "searchQuery", defaultValue = "", required = false) String searchQuery) {
@@ -56,7 +55,7 @@ public class DepartmentController {
 	}
 
 	@GetMapping(value = "/{departmentId}", produces = "application/json")
-	public DepartmentResponse getByUserId(@PathVariable String departmentId) {
+	public DepartmentResponse getByDepartmentId(@PathVariable String departmentId) {
 
 		return departmentServiceImpl.getDepartmentById(departmentId);
 	}

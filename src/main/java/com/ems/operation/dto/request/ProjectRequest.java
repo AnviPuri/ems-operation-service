@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
-import com.ems.operation.entity.Department;
 import com.sun.istack.NotNull;
 
 public class ProjectRequest {
@@ -22,7 +21,7 @@ public class ProjectRequest {
 	@NotBlank(message = "Status cant'be empty")
 	private String status;
 
-	private List<Department> departments = new ArrayList<>();
+	private List<String> departmentIdList = new ArrayList<>();
 
 	public String getProjectName() {
 		return projectName;
@@ -48,12 +47,12 @@ public class ProjectRequest {
 		this.status = status;
 	}
 
-	public List<Department> getDepartments() {
-		return departments;
+	public List<String> getDepartmentIdList() {
+		return departmentIdList;
 	}
 
-	public void setDepartments(List<Department> departments) {
-		this.departments = departments;
+	public void setDepartmentIdList(List<String> departmentIdList) {
+		this.departmentIdList = departmentIdList;
 	}
 
 }

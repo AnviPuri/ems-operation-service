@@ -1,5 +1,6 @@
 package com.ems.operation.repo;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -18,5 +19,7 @@ public interface DepartmentRepo extends JpaRepository<Department, String> {
 
 	Page<Department> findByAuditIsActiveAndDepartmentNameContainingIgnoreCase(boolean isActive, String departmentName,
 			Pageable pageable);
+
+	Optional<List<Department>> findByDepartmentIdInAndAuditIsActive(List<String> departmentId, boolean isActive);
 
 }

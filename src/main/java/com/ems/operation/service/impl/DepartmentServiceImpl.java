@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 
 import com.ems.operation.communication.SyncCommunication;
 import com.ems.operation.communication.response.UserResponse;
+import com.ems.operation.constant.Constants;
 import com.ems.operation.dto.request.DepartmentRequest;
-import com.ems.operation.dto.request.DepartmentUpdateRequest;
 import com.ems.operation.dto.response.DepartmentResponse;
 import com.ems.operation.entity.Department;
 import com.ems.operation.mapper.DepartmentMapper;
@@ -31,11 +31,6 @@ import ems.utility.util.EmsUtility;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-	// kafka to be used when user is deleted - so would be have to deleted from all
-	// departments and prjects too
-	// before deleting user check if user id is department head or project head of
-	// any department/ project to resassign before deleting
-
 	@Autowired
 	private DepartmentRepo deptRepository;
 
@@ -48,16 +43,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public DepartmentResponse createDepartment(DepartmentRequest departmentRequest) {
 
 		EmsLogger.log("CREATE DEPARTMENT WITH REQUEST : " + EmsUtility.toJsonString(departmentRequest), logger);
-		
-		// Department Head/ Project Head added as root user
-		// when assigning reporting head only option of users who exist in project/dept given
-
-		// validation - check if user exists
-		
-		// ADD user id as department head
 
 		Department department = new Department();
-		department = DepartmentMapper.departmentRequestToEntityMapper(departmentRequest);
+		DepartmentMapper.departmentRequestToEntityMapper(departmentRequest, Constants.RequestOperation.CREATE,
+				department);
 		department = deptRepository.save(department);
 
 		DepartmentResponse deptResponse = new DepartmentResponse();
@@ -67,19 +56,16 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public DepartmentResponse updateDepartment(DepartmentUpdateRequest departmentUpdateRequest) {
+	public DepartmentResponse updateDepartment(DepartmentRequest departmentUpdateRequest, String departmentId) {
 
 		EmsLogger.log("UPDATE DEPARTMENT WITH REQUEST : " + EmsUtility.toJsonString(departmentUpdateRequest), logger);
-
-		// validation - IF NEEDED
-
-		String departmentId = departmentUpdateRequest.getDepartmentId();
 
 		Department department = new Department();
 		Optional<Department> optionalDepartment = deptRepository.findByDepartmentIdAndAuditIsActive(departmentId, true);
 		if (optionalDepartment.isPresent()) {
 			department = optionalDepartment.get();
-			department = DepartmentMapper.departmentUpdateRequestToEntityMapper(departmentUpdateRequest, department);
+			department = DepartmentMapper.departmentRequestToEntityMapper(departmentUpdateRequest,
+					Constants.RequestOperation.UPDATE, department);
 			department = deptRepository.save(department);
 
 			DepartmentResponse departmentResponse = new DepartmentResponse();
@@ -144,7 +130,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		pagedDepartmentResponseList = pagedDepartmentList.stream()
 				.map(pagedDepartment -> DepartmentMapper.departmentEntityToResponseMapper(pagedDepartment))
 				.collect(Collectors.toList());
-		// TO DO - add project details and department head details
+
 		resultBody.put("pagedUserResponseList", pagedDepartmentResponseList);
 
 		return resultBody;
@@ -165,7 +151,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 			userResponse = syncCommunication.getUserDetails(department.getDepartmentHead());
 			departmentResponse.setDepartmentHeadFirstName(userResponse.getFirstName());
 			departmentResponse.setDepartmentHeadLastName(userResponse.getLastName());
-			// TO DO - add project details
 		}
 		return departmentResponse;
 	}

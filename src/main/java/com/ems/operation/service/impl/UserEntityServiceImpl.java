@@ -43,13 +43,6 @@ public class UserEntityServiceImpl implements UserEntityService {
 	public UserEntityResponse addUserToEntity(UserEntityRequest userEntityRequest, String entityId) {
 		EmsLogger.log("ADD USER " + userEntityRequest.getUserId() + " TO ENTITY : " + entityId, logger);
 
-		// TO DO - Validation check if user and department exists
-		// Validation check for entity type - it should be of type
-		// Constants.EntityType.DEPARTMENT
-
-		// validation check for user id and entity id- can't exists in the same entity 2
-		// times
-
 		UserEntityMapping userEntityMapping = new UserEntityMapping();
 		userEntityMapping = UserEntityMappingMapper.entityUserMappingRequestToEntityMapper(userEntityRequest, entityId,
 				Constants.Status.ACTIVE);
@@ -86,15 +79,9 @@ public class UserEntityServiceImpl implements UserEntityService {
 
 	}
 
-	/*
-	 * TO DO - Kafka event when user first name/last name is updated
-	 */
-
 	@Override
 	public UserEntityResponse updateUserInEntity(UserEntityRequest userEntityRequest, String entityId) {
 		EmsLogger.log("UPDATE USER : " + userEntityRequest.getUserId() + " IN ENTITY : " + entityId, logger);
-
-		// validation - IF NEEDED
 
 		String userId = userEntityRequest.getUserId();
 		Optional<UserEntityMapping> optionalUserEntity = userEntityRepository

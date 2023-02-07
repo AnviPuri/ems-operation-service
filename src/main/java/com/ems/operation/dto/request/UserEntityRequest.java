@@ -10,10 +10,8 @@ public class UserEntityRequest {
 	@NotBlank(message = "User ID cant'be empty")
 	private String userId;
 
-	// not sure if role needed or not
 	private String role = "";
 
-	// WILL BE ROOT IN CASE TOP OF HIERARCHY IN AN ENTITY
 	@NotNull
 	@NotBlank(message = "Reporting Head cant'be empty")
 	private String reportsTo;

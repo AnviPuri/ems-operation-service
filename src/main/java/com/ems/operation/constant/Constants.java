@@ -36,4 +36,11 @@ public final class Constants {
 
 	}
 
+	public static class RequestOperation {
+
+		public static final String CREATE = "CREATE";
+		public static final String UPDATE = "UPDATE";
+
+	}
+
 }

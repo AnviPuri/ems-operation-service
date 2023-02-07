@@ -46,10 +46,6 @@ public class UserEntityController {
 		return userEntityServiceImpl.updateUserInEntity(userEntityRequest, entityId);
 	}
 
-	/*
-	 * API to get all users in a particular entity (PROJECT/DEPT) sorted by first
-	 * name and last name (paginated)
-	 */
 	@GetMapping(value = "/{entityId}", produces = "application/json")
 	public HashMap<String, Object> getAllUsersInEntity(@PathVariable String entityId,
 			@RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,

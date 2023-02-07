@@ -3,14 +3,13 @@ package com.ems.operation.service;
 import java.util.HashMap;
 
 import com.ems.operation.dto.request.DepartmentRequest;
-import com.ems.operation.dto.request.DepartmentUpdateRequest;
 import com.ems.operation.dto.response.DepartmentResponse;
 
 public interface DepartmentService {
 
 	public DepartmentResponse createDepartment(DepartmentRequest departmentRequest);
 
-	public DepartmentResponse updateDepartment(DepartmentUpdateRequest departmentUpdateRequest);
+	public DepartmentResponse updateDepartment(DepartmentRequest departmentUpdateRequest, String departmentId);
 
 	public boolean deleteDepartment(String departmentId);
 

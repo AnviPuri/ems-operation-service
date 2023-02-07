@@ -1,28 +1,23 @@
 package com.ems.operation.mapper;
 
+import com.ems.operation.constant.Constants;
 import com.ems.operation.dto.request.DepartmentRequest;
-import com.ems.operation.dto.request.DepartmentUpdateRequest;
 import com.ems.operation.dto.response.DepartmentResponse;
 import com.ems.operation.entity.Department;
 import com.ems.operation.util.AuditUtility;
 
 public class DepartmentMapper {
 
-	public static Department departmentRequestToEntityMapper(DepartmentRequest deptRequest) {
-
-		Department dept = new Department();
-		dept.setDepartmentName(deptRequest.getDepartmentName());
-		dept.setDepartmentHead(deptRequest.getDepartmentHead());
-		dept.setAudit(AuditUtility.createApiAuditBuild());
-		return dept;
-	}
-
-	public static Department departmentUpdateRequestToEntityMapper(DepartmentUpdateRequest departmentUpdateRequest,
+	public static Department departmentRequestToEntityMapper(DepartmentRequest deptRequest, String requestOperation,
 			Department department) {
 
-		department.setDepartmentName(departmentUpdateRequest.getDepartmentName());
-		department.setDepartmentHead(departmentUpdateRequest.getDepartmentHead());
-		department.setAudit(AuditUtility.updateApiAuditBuild(department.getAudit()));
+		department.setDepartmentName(deptRequest.getDepartmentName());
+		department.setDepartmentHead(deptRequest.getDepartmentHead());
+		if (requestOperation.equals(Constants.RequestOperation.CREATE)) {
+			department.setAudit(AuditUtility.createApiAuditBuild());
+		} else if (requestOperation.equals(Constants.RequestOperation.UPDATE)) {
+			department.setAudit(AuditUtility.updateApiAuditBuild(department.getAudit()));
+		}
 		return department;
 	}
 
